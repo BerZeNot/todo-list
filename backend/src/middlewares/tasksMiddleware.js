@@ -39,6 +39,9 @@ const validateParamsToUpdateTask = async (req, res, next) => {
     if(body.status === "")
         messages.push('O campo status não pode ser vazio');
 
+    if(body.status !== 'PENDENTE' && body.status !== 'CONCLUIDO')
+        messages.push('O campo status aceita somente os valores \'PENDENTE\' e \'CONCLUIDO\'');
+
     if(messages.length > 0)
         return res.status(400).json(messages);
 
